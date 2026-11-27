@@ -19,6 +19,10 @@ Thank you for reading this far.
 
 
 def main():
+    # The gate allows 1 to 1,000 characters; fail loudly here instead of
+    # submitting a text the scorer would reject.
+    if not 1 <= len(TEXT) <= 1000:
+        raise ValueError(f"entry text is {len(TEXT)} characters, must be 1-1000")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
